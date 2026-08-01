@@ -21,6 +21,6 @@ var taskTwoExamples = new (ClientType Client, decimal Amount)[]
 foreach (var (client, amount) in taskTwoExamples)
 {
     decimal discount = DiscountCalculator.CalculateDiscount(amount, client);
-    Console.WriteLine($"Client: {client}, order: {amount}, discount: {discount}");
+    Console.WriteLine($"Client: {client}, amount: {amount}, discount: {discount}");
 }
 Console.WriteLine("===");
