@@ -16,7 +16,7 @@ public static class DiscountCalculator
                 "order amount can't be negative");
         }
 
-        decimal orderDiscount = clientType switch //подсчет процента скидки в зависимости от типа клиента и суммы заказа
+        decimal orderDiscountRate = clientType switch //подсчет процента скидки в зависимости от типа клиента и суммы заказа
         {
             Vip => 0.15m,
             Premium => orderAmount > 1000m ? 0.10m : 0.05m,
@@ -24,6 +24,6 @@ public static class DiscountCalculator
             _ => throw new ArgumentOutOfRangeException(nameof(clientType))
         };
 
-        return orderAmount * orderDiscount;
+        return orderAmount * orderDiscountRate;
     }
 }
