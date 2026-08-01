@@ -7,7 +7,7 @@
 *.suo
 *.userosscache
 *.sln.docstates
-## Rider / VS Code (на всякий случай)
+## VS Code
 .idea/
 .vscode/
 ## OS
