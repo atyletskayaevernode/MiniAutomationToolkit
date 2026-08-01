@@ -11,4 +11,10 @@
     <ProjectReference Include="..\MiniAutomationToolkit.Core\MiniAutomationToolkit.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="data\appsettings.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

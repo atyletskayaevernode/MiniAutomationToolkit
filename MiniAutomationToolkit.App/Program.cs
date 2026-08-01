@@ -4,6 +4,7 @@ using System.Diagnostics;
 using static MiniAutomationToolkit.Core.Models.ClientType;
 using MiniAutomationToolkit.Core.Helpers;
 using MiniAutomationToolkit.Core.Pages;
+using MiniAutomationToolkit.Core.Configuration;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -177,6 +178,31 @@ try
     }
 }
 catch (InvalidOperationException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+Console.WriteLine("===");
+
+Console.WriteLine("Task 6 test (AppConfig)");
+
+var configPath = Path.Combine(AppContext.BaseDirectory, "data", "appsettings.txt"); //путь к конфиг файлу
+var config = new AppConfig(configPath); //создание объекта конфигурации
+string baseUrl = config.GetSetting<string>("baseUrl");
+int timeout = config.GetSetting<int>("timeout");
+bool headless = config.GetSetting<bool>("headless");
+int retryCount = config.GetSetting<int>("retryCount");
+
+Console.WriteLine($"baseUrl: {baseUrl}");
+Console.WriteLine($"timeout: {timeout}");
+Console.WriteLine($"headless: {headless}");
+Console.WriteLine($"retryCount: {retryCount}");
+
+try
+{
+    config.GetSetting<string>("missingKey");
+}
+catch (KeyNotFoundException ex)
 {
     Console.WriteLine(ex.Message);
 }
