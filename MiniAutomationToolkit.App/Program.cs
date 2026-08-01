@@ -156,14 +156,14 @@ var pages = new List<BasePage>
     new HomePage(),
 };
 
-foreach (var page in pages) 
+foreach (var page in pages) //загрузка страниц
 {
     page.Load();
 }
 
 try
 {
-    bool hasDuplicateUrls = pages
+    bool hasDuplicateUrls = pages //проверка на дубликаты урлов
         .GroupBy(page => page.Url)
         .Any(group => group.Count() > 1);
 
@@ -171,8 +171,10 @@ try
     {
         throw new InvalidOperationException("Duplicates found");
     }
-
-    Console.WriteLine("All page URLs are unique");
+    else 
+    {
+        Console.WriteLine("All page urls are unique");
+    }
 }
 catch (InvalidOperationException ex)
 {
