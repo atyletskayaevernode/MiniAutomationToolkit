@@ -1,0 +1,15 @@
+## Build
+[Bb]in/
+[Oo]bj/
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+## Rider / VS Code (на всякий случай)
+.idea/
+.vscode/
+## OS
+Thumbs.db
+Desktop.ini

@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore.txt" />
+  </Folder>
   <Project Path="MiniAutomationToolkit.App/MiniAutomationToolkit.App.csproj" />
   <Project Path="MiniAutomationToolkit.Core/MiniAutomationToolkit.Core.csproj" />
 </Solution>
