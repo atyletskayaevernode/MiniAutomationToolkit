@@ -1,1 +1,1 @@
-﻿Console.WriteLine("launch test");
+﻿Console.WriteLine("MiniAutomationToolkit started");
