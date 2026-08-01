@@ -6,8 +6,8 @@ namespace MiniAutomationToolkit.Core.Models
 {
     public record UserDto //record (я так поняла, для удобства сравнения) + свойства только для чтения, и объект неизменяемый. = читается как ==
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Name { get; }
+        public string Email { get; }
 
         public UserDto(string name, string email)
         {
