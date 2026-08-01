@@ -3,6 +3,7 @@ using MiniAutomationToolkit.Core.Services;
 using System.Diagnostics;
 using static MiniAutomationToolkit.Core.Models.ClientType;
 using MiniAutomationToolkit.Core.Helpers;
+using MiniAutomationToolkit.Core.Pages;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -147,4 +148,35 @@ catch (ArgumentException ex)
 }
 Console.WriteLine("===");
 
+Console.WriteLine("Task 5 test (pages)");
 
+var pages = new List<BasePage>
+{
+    new LoginPage(),
+    new HomePage(),
+};
+
+foreach (var page in pages) 
+{
+    page.Load();
+}
+
+try
+{
+    bool hasDuplicateUrls = pages
+        .GroupBy(page => page.Url)
+        .Any(group => group.Count() > 1);
+
+    if (hasDuplicateUrls)
+    {
+        throw new InvalidOperationException("Duplicates found");
+    }
+
+    Console.WriteLine("All page URLs are unique");
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+Console.WriteLine("===");
