@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MiniAutomationToolkit.App/MiniAutomationToolkit.App.csproj" />
+  <Project Path="MiniAutomationToolkit.Core/MiniAutomationToolkit.Core.csproj" />
+</Solution>
