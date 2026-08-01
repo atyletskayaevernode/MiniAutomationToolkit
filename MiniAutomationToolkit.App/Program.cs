@@ -90,4 +90,61 @@ catch (FileNotFoundException ex)
 }
 Console.WriteLine("===");
 
+Console.WriteLine("Task 4 test (UserDto)");
+
+//создание 2 юзеров с одинаковыми данными, проверка на равенство
+var user1 = new UserDto("John", "johndoe@example.com");
+Console.WriteLine($"Created user: {user1.Name}, {user1.Email}");
+
+var user2 = new UserDto("John", "johndoe@example.com");
+Console.WriteLine($"user1 == user2: {user1 == user2}");
+
+//я хз, как сделать так, чтобы при попытке изменить имя или почту выдавало эксепшен, т.к. record без сеттера не позволяет менять свойства и программа не билдится
+//try
+//{
+//    user1.Name = "Notjohn";
+//}
+//
+//try
+//{
+//    user1.Email = "notjohndoe@example.com";
+//}
+
+try
+{
+    var invalidUser = new UserDto("", "johndoe@example.com"); // пустое имя
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+try
+{
+    var invalidUser = new UserDto("John", ""); // пустая почта
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+try
+{
+    var invalidUser = new UserDto("John", "johndoeexample.com"); // без @
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+try
+{
+    var invalidUser = new UserDto("John", "johndoe @example.com"); // пробел в почте
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+Console.WriteLine("===");
+
 
