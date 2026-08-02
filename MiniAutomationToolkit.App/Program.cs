@@ -7,6 +7,7 @@ using MiniAutomationToolkit.Core.Pages;
 using MiniAutomationToolkit.Core.Configuration;
 using MiniAutomationToolkit.Core.Extensions;
 using MiniAutomationToolkit.Core.Simulations;
+using MiniAutomationToolkit.Core.Validation;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -263,4 +264,23 @@ Console.WriteLine($"Missing file read result: {(missingContent is null ? "file n
 
 Console.WriteLine("Error log read result:"); //чтение лог файла и вывод результата в консоль
 Console.WriteLine(File.ReadAllText(logPath));
+
+Console.WriteLine("===");
+
+Console.WriteLine("Task 10 test (Guard validation)");
+
+int[] values = { 5, -5, 0 };
+
+foreach (var value in values) //для каждого числа массива вызывается метод проверки на положительность, если проверка не пройдена - пишется сообщение
+{
+    try
+    {
+        Guard.EnsurePositive(value);
+    }
+    catch (ValidationException ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+}
+
 Console.WriteLine("===");
