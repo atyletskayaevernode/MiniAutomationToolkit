@@ -26,7 +26,7 @@ namespace MiniAutomationToolkit.Core.Services
 
         private static void WriteErrorLog(string logFilePath, Exception ex) //метод для записи в лог
         {
-            string line = $"[{DateTime.Now}] {ex.GetType().Name}: {ex.Message}{Environment.NewLine}";
+            string line = $"{DateTime.Now} | {ex.GetType().Name} | {ex.Message}{Environment.NewLine}";
             File.AppendAllText(logFilePath, line);
         }
     }
