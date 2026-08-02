@@ -13,7 +13,7 @@ namespace MiniAutomationToolkit.Core.Validation
         {
             if (number <= 0)
             {
-                throw new ValidationException($"Parameter '{parameterName}' must be positive. Value: {number}");
+                throw new ValidationException($"Validation failed: {parameterName} must be positive. Value: {number}");
             }
         }
 
