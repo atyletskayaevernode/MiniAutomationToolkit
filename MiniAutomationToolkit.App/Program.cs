@@ -6,6 +6,7 @@ using MiniAutomationToolkit.Core.Helpers;
 using MiniAutomationToolkit.Core.Pages;
 using MiniAutomationToolkit.Core.Configuration;
 using MiniAutomationToolkit.Core.Extensions;
+using MiniAutomationToolkit.Core.Simulations;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -225,5 +226,23 @@ foreach (var url in urls) //проверка каждой строки из ма
     string display = url ?? "<null>";
     Console.WriteLine($"{display} → {result}");
 }
+Console.WriteLine("===");
+
+Console.WriteLine("Task 8 test (LongOperations)");
+
+var simulator = new LongOperationSimulator();
+
+var syncStopwatch = Stopwatch.StartNew(); //запуск синхронной операции и замер времени, вывод результата и времени в консоль
+string syncResult = simulator.LongOperation();
+syncStopwatch.Stop();
+Console.WriteLine($"Sync result: {syncResult}");
+Console.WriteLine($"Sync timer: {syncStopwatch.ElapsedMilliseconds} ms");
+
+var asyncStopwatch = Stopwatch.StartNew(); //запуск асинхронной операции и замер времени, вывод результата и времени в консоль
+string asyncResult = await simulator.LongOperationAsync();
+asyncStopwatch.Stop();
+Console.WriteLine($"Async result: {asyncResult}");
+Console.WriteLine($"Async timer: {asyncStopwatch.ElapsedMilliseconds} ms");
+
 Console.WriteLine("===");
 
