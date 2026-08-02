@@ -5,6 +5,7 @@ using static MiniAutomationToolkit.Core.Models.ClientType;
 using MiniAutomationToolkit.Core.Helpers;
 using MiniAutomationToolkit.Core.Pages;
 using MiniAutomationToolkit.Core.Configuration;
+using MiniAutomationToolkit.Core.Extensions;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -208,3 +209,21 @@ catch (KeyNotFoundException ex)
 }
 
 Console.WriteLine("===");
+
+Console.WriteLine("Task 7 test (HasHttpScheme)");
+string?[] urls = //тут массив строчек с урлами, включая null и аппер кейс
+{
+    "https://google.com",
+    "http://example.org",
+    "ftp://files.example.com",
+    null,
+    "HTTPS://SITE.EXAMPLE.COM",
+};
+foreach (var url in urls) //проверка каждой строки из массива новым методом HasHttpScheme() и вывод результата в консоль
+{
+    bool result = url.HasHttpScheme();
+    string display = url ?? "<null>";
+    Console.WriteLine($"{display} → {result}");
+}
+Console.WriteLine("===");
+
