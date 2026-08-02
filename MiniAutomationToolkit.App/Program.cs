@@ -246,3 +246,21 @@ Console.WriteLine($"Async timer: {asyncStopwatch.ElapsedMilliseconds} ms");
 
 Console.WriteLine("===");
 
+Console.WriteLine("Task 9 test (ErrorLogger)");
+
+var errorLogger = new ErrorLogger();
+
+string inputPath = Path.Combine(AppContext.BaseDirectory, "data", "input.txt"); //генерация путей к файлам
+string missingPath = Path.Combine(AppContext.BaseDirectory, "data", "missing.txt");
+string logPath = Path.Combine(AppContext.BaseDirectory, "data", "errors.log");
+
+string? fileContent = errorLogger.TryReadFile(inputPath, logPath); //чтение существующего файла, запись ошибки в лог и вывод результата в консоль
+Console.WriteLine("Existing file read result:");
+Console.WriteLine(fileContent);
+
+string? missingContent = errorLogger.TryReadFile(missingPath, logPath); //чтение несуществующего файла, запись ошибки в лог и вывод результата в консоль
+Console.WriteLine($"Missing file read result: {(missingContent is null ? "file not found" : missingContent)}");
+
+Console.WriteLine("Error log read result:"); //чтение лог файла и вывод результата в консоль
+Console.WriteLine(File.ReadAllText(logPath));
+Console.WriteLine("===");
