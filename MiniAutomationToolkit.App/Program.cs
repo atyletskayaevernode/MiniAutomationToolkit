@@ -304,11 +304,13 @@ static void PrintAffordableFood(List<Product> products, decimal maxPrice)
         ProductCategory.Food,
         maxPrice);
     Console.WriteLine($"Food with price < {maxPrice}:");
+
     if (names.Count == 0)
     {
         Console.WriteLine("No products found");
         return;
     }
+
     foreach (var name in names)
     {
         Console.WriteLine(name);
