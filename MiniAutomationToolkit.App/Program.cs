@@ -8,6 +8,7 @@ using MiniAutomationToolkit.Core.Configuration;
 using MiniAutomationToolkit.Core.Extensions;
 using MiniAutomationToolkit.Core.Simulations;
 using MiniAutomationToolkit.Core.Validation;
+using MiniAutomationToolkit.Core.Repositories;
 
 Console.WriteLine("MiniAutomationToolkit started");
 Console.WriteLine("===");
@@ -225,7 +226,7 @@ foreach (var url in urls) //проверка каждой строки из ма
 {
     bool result = url.HasHttpScheme();
     string display = url ?? "<null>";
-    Console.WriteLine($"{display} → {result}");
+    Console.WriteLine($"{display}: {result}");
 }
 Console.WriteLine("===");
 
@@ -280,6 +281,37 @@ foreach (var value in values) //для каждого числа массива 
     catch (ValidationException ex)
     {
         Console.WriteLine(ex.Message);
+    }
+}
+
+Console.WriteLine("===");
+
+Console.WriteLine("Task 11 test (ProductRepository)");
+
+string productsPath = Path.Combine(AppContext.BaseDirectory, "data", "products.csv");
+
+List<Product> products = ProductRepository.LoadFromCsv(productsPath);
+
+Console.WriteLine($"Loaded products: {products.Count}");
+
+PrintAffordableFood(products, 10m);
+PrintAffordableFood(products, 1m);
+
+static void PrintAffordableFood(List<Product> products, decimal maxPrice)
+{
+    List<string> names = ProductRepository.GetAffordableProducts(
+        products,
+        ProductCategory.Food,
+        maxPrice);
+    Console.WriteLine($"Food with price < {maxPrice}:");
+    if (names.Count == 0)
+    {
+        Console.WriteLine("No products found");
+        return;
+    }
+    foreach (var name in names)
+    {
+        Console.WriteLine(name);
     }
 }
 
